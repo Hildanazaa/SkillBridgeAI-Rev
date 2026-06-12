@@ -1,0 +1,51 @@
+PROGRESS
+
+=== STATUS IMPLEMENTASI FITUR ===
+
+1. Preprocessing & Agregasi Data (src/preprocessing/)
+- Menggabungkan data lowongan pekerjaan mentah JobStreet (~298 MB) menjadi satu file data/raw/mergeFile.csv.
+- Melakukan normalisasi nama karier untuk menggabungkan variasi penulisan yang mirip (misalnya "Front End Developer" dan "Frontend Developer" menjadi "Frontend Developer") untuk menghindari duplikasi.
+- Menyaring karier dengan frekuensi postingan > 100 lowongan, lalu menyimpan maksimal 20 lowongan teratas per karier.
+
+2. Vektorisasi & Model Embedding (src/embedding/)
+- Menggunakan model multilingual "paraphrase-multilingual-MiniLM-L12-v2" yang mendukung pencocokan bahasa Indonesia dan Inggris.
+- Menerapkan Embedding Averaging (merata-ratakan vektor dari 20 lowongan pekerjaan per karier) agar tidak terjadi pemotongan teks (text truncation) pada model.
+- Menyimpan hasil embedding ke data/embeddings/career_embeddings.npy.
+
+3. Kamus Keahlian & Ekstraksi Skill (src/skill_extraction/)
+- Memusatkan kamus berisi 46 keahlian populer industri ke src/skill_extraction/skills.py (Single Source of Truth).
+- Menambahkan pembersihan variasi penulisan keahlian pada teks postingan sebelum dicocokkan (misal "reactjs" diubah menjadi "react").
+- Menerapkan pencocokan Regex Word Boundary (\b) untuk mencegah false-positive (misalnya mendeteksi "java" pada kata "javascript").
+- Menyimpan hasil ekstraksi skill bersih ke data/processed/career_skills.json.
+
+4. Rekomendasi Karier Hibrida (src/recommender/)
+- Menyaring karier dengan 0 skill wajib agar tidak direkomendasikan.
+- Menggunakan pencarian hibrida (Hybrid Search): menggabungkan skor kemiripan semantik AI dengan skor tumpang tindih kata kunci (skill overlap). Setiap skill yang cocok memberikan score boost +15 poin, sehingga hasil rekomendasi sangat relevan dengan keahlian IT.
+
+5. Analisis Kesenjangan Keahlian (src/skill_extraction/)
+- Menerapkan kamus sinonim untuk menormalisasi variasi input pengguna (misalnya mengubah "react js" menjadi "react").
+- Menghitung Readiness Score (%) secara objektif.
+- Memisahkan secara detail keahlian yang cocok (matching skills) dan keahlian yang kurang (missing skills).
+
+=== STRUKTUR DIREKTORI UTAMA ===
+
+- data/
+  - raw/ : Dataset lowongan kerja mentah.
+  - processed/ : Profil karier terfilter dan JSON skill karier.
+  - embeddings/ : Berkas biner vektor embedding.
+- src/
+  - preprocessing/ : Skrip pembersihan dan normalisasi nama karier.
+  - embedding/ : Skrip pembuat embedding vektor.
+  - recommender/ : Skrip utama mesin rekomendasi hibrida.
+  - skill_extraction/ : Logika ekstraksi keahlian dan analisis gap.
+- notebooks/
+  - progress_report.txt : Laporan progres sederhana (file ini).
+- tests/
+  - test_skill_gap.py : Skrip pengujian otomatis.
+- main.py : Berkas utama pengoperasian aplikasi berbasis CLI.
+
+=== RENCANA LANGKAH SELANJUTNYA ===
+1. Memperluas kamus skill dengan menambahkan soft skills dan hard skills terspesialisasi lainnya.
+2. Mengintegrasikan mesin pencarian vektor seperti FAISS jika data karier bertambah besar di masa mendatang.
+3. Mengembangkan antarmuka berbasis web (UI/UX) seperti menggunakan Streamlit atau React untuk menggantikan CLI.
+4. Menambahkan fitur rekomendasi konten pembelajaran untuk membantu menutup gap skill yang kurang.
