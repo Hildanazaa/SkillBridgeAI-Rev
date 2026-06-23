@@ -1,3 +1,21 @@
+import os
+import warnings
+import logging
+
+warnings.filterwarnings("ignore")
+os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
+os.environ["HF_HUB_DISABLE_IMPLICIT_TOKEN_WARNING"] = "1"
+# os.environ["HF_HUB_OFFLINE"] = "1"
+# os.environ["TRANSFORMERS_OFFLINE"] = "1"
+try:
+    from huggingface_hub.utils import disable_progress_bars
+    disable_progress_bars()
+except ImportError:
+    pass
+
+logging.getLogger("sentence_transformers").setLevel(logging.WARNING)
+logging.getLogger("transformers").setLevel(logging.ERROR)
+
 import pandas as pd
 import numpy as np
 from sentence_transformers import SentenceTransformer
@@ -7,9 +25,9 @@ df = pd.read_csv(
     "data/processed/career_profiles_raw.csv"
 )
 
-print("Loading model paraphrase-multilingual-MiniLM-L12-v2...")
+print("Loading model all-MiniLM-L6-v2...")
 model = SentenceTransformer(
-    "paraphrase-multilingual-MiniLM-L12-v2"
+    "all-MiniLM-L6-v2"
 )
 
 print("Generating embeddings with averaging...")
@@ -19,14 +37,12 @@ unique_embeddings = []
 for i, career in enumerate(unique_careers):
     profiles = df[df["career"] == career]["profile"].tolist()
     
-    # Generate embeddings for all profiles of this career
     emb = model.encode(
         profiles,
         show_progress_bar=False,
         convert_to_numpy=True
     )
     
-    # Calculate the average vector (mean along axis 0)
     avg_emb = np.mean(emb, axis=0)
     unique_embeddings.append(avg_emb)
     
@@ -35,18 +51,44 @@ for i, career in enumerate(unique_careers):
 
 embeddings_array = np.array(unique_embeddings)
 
-# Save embeddings
-np.save(
-    "data/embeddings/career_embeddings.npy",
-    embeddings_array
+np.savetxt(
+    "data/embeddings/career_embeddings.csv",
+    embeddings_array,
+    delimiter=","
 )
 
-# Save unique career titles so recommendation indices match 1-to-1
-unique_careers_df = pd.DataFrame({"career": unique_careers})
+# Group by career and aggregate columns to preserve them in career_profiles.csv
+# This is required because scoring.py loads career_profiles.csv directly and expects Title, Skills, Keywords, Responsibilities
+def combine_unique_skills(series):
+    skills = set()
+    for row in series.dropna():
+        for skill in str(row).replace(";", ",").split(","):
+            skill = skill.strip()
+            if skill:
+                skills.add(skill)
+    return "; ".join(sorted(skills))
+
+def combine_unique_keywords(series):
+    keywords = set()
+    for row in series.dropna():
+        for kw in str(row).replace(";", ",").split(","):
+            kw = kw.strip()
+            if kw:
+                keywords.add(kw)
+    return " ".join(sorted(keywords))
+
+unique_careers_df = df.groupby("career", as_index=False).agg({
+    "Skills": combine_unique_skills,
+    "Keywords": combine_unique_keywords,
+    "Responsibilities": lambda x: " ".join(x.dropna().astype(str))
+})
+unique_careers_df["Title"] = unique_careers_df["career"]
+unique_careers_df = unique_careers_df[["career", "Title", "Skills", "Keywords", "Responsibilities"]]
+
 unique_careers_df.to_csv(
     "data/processed/career_profiles.csv",
     index=False
 )
 
-print("Saved embeddings and unique careers list.")
+print("Saved embeddings and unique careers list with all scoring columns.")
 print("Shape:", embeddings_array.shape)

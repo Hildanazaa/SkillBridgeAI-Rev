@@ -1,12 +1,13 @@
-# src/skill_extraction/skill_gap.py
-
 import json
 from difflib import get_close_matches
+from src.skill_extraction.skills import SKILLS
+
+_skills_lower = [s.lower() for s in SKILLS]
 
 
 def normalize_skill_name(skill_name: str) -> str:
     """
-    Normalize skill name to map synonyms to a standard name.
+    Normalize skill name to map synonyms to a standard name and auto-correct typos.
     """
     s = skill_name.lower().strip()
     mapping = {
@@ -30,8 +31,20 @@ def normalize_skill_name(skill_name: str) -> str:
         "power bi": "power bi",
         "restapi": "rest api",
         "rest api": "rest api",
+        "js": "javascript",
+        "ts": "typescript",
     }
-    return mapping.get(s, s)
+    
+    s_mapped = mapping.get(s, s)
+    if s_mapped in _skills_lower:
+        return s_mapped
+        
+    # Fuzzy match with high similarity threshold (e.g. 75%)
+    matches = get_close_matches(s_mapped, _skills_lower, n=1, cutoff=0.75)
+    if matches:
+        return matches[0]
+        
+    return s_mapped
 
 
 def analyze_skill_gap(
@@ -96,7 +109,6 @@ def analyze_skill_gap(
             "suggestions": suggestions
         }
 
-    # Normalize user skills for matching
     normalized_user_skills = {
         normalize_skill_name(skill)
         for skill in user_skills
@@ -124,7 +136,7 @@ def analyze_skill_gap(
         / len(career_skills)
         * 100,
         2
-    ) if career_skills else 0
+    ) if career_skills else 0.0
 
     return {
         "success": True,
@@ -132,6 +144,7 @@ def analyze_skill_gap(
         "readiness_score": score,
         "matching_skills": matched,
         "missing_skills": missing,
+        "note": "Tidak ada data keahlian wajib yang terdaftar untuk karir ini di database." if not career_skills else None,
         "statistics": {
             "total_required_skills": len(career_skills),
             "matched_skills": len(matched),

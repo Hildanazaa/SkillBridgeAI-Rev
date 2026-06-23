@@ -1,101 +1,63 @@
 import pandas as pd
+import re
 
-def normalize_job_title(title: str) -> str:
-    t = str(title).strip().lower()
-    
-    # Standardize spaces and symbols
-    t = t.replace("-", " ").replace("/", " ")
-    
-    # Standardize Frontend
-    if "front end" in t or "frontend" in t:
-        if "engineer" in t or "developer" in t or "programmer" in t:
-            return "Frontend Developer"
-            
-    # Standardize Backend
-    if "back end" in t or "backend" in t:
-        if "engineer" in t or "developer" in t or "programmer" in t:
-            return "Backend Developer"
-            
-    # Standardize Fullstack
-    if "full stack" in t or "fullstack" in t:
-        if "engineer" in t or "developer" in t or "programmer" in t:
-            return "Fullstack Developer"
-            
-    # Standardize UI/UX
-    if "ui ux" in t or "uiux" in t or ("user interface" in t and "user experience" in t):
-        if "designer" in t or "engineer" in t or "developer" in t:
-            return "UI/UX Designer"
-            
-    # Standardize Mobile Developers
-    if "android" in t and ("developer" in t or "engineer" in t):
-        return "Android Developer"
-    if "ios" in t and ("developer" in t or "engineer" in t):
-        return "iOS Developer"
-        
-    # Standardize Data Analyst
-    if "data analyst" in t:
-        return "Data Analyst"
-    if "data engineer" in t:
-        return "Data Engineer"
-    if "data scientist" in t:
-        return "Data Scientist"
-
-    # Default to a capitalized title
-    return " ".join([word.capitalize() for word in str(title).split()])
+def clean_title(title):
+    title = str(title).split("-")[0]
+    title = re.sub(
+        r"\b(entry level|entry-level|junior|senior|intern|trainee|fresher|experienced)\b",
+        "",
+        title,
+        flags=re.IGNORECASE
+    )
+    title = re.sub(r"\s+", " ", title).strip()
+    # Ensure Title Case capitalization
+    title = " ".join([word.capitalize() for word in title.split()])
+    return title
 
 print("Loading dataset...")
-
 df = pd.read_csv(
-    "data/raw/mergeFile.csv",
+    "data/raw/job_dataset.csv",
     low_memory=False
 )
 
+# Drop rows with null Titles
+df = df.dropna(subset=["Title"])
+
 print("Normalizing job titles...")
-df["jobTitle"] = df["jobTitle"].apply(normalize_job_title)
-
-print("Filtering job titles...")
-
-job_counts = df["jobTitle"].value_counts()
-
-valid_titles = job_counts[
-    job_counts > 100
-].index
-
-df = df[
-    df["jobTitle"].isin(valid_titles)
-]
+df["career"] = df["Title"].apply(clean_title)
 
 print("Building profiles...")
-
 profiles = []
 
-for title in valid_titles:
+for idx, job in df.iterrows():
+    title = job["Title"]
+    career = job["career"]
+    skills = str(job.get("Skills", "")).strip()
+    resp = str(job.get("Responsibilities", "")).strip()
+    kw = str(job.get("Keywords", "")).strip()
+    exp_level = str(job.get("ExperienceLevel", "")).strip()
+    y_exp = str(job.get("YearsOfExperience", "")).strip()
 
-    jobs = df[
-        df["jobTitle"] == title
-    ].head(20)
+    # Combine details for embedding text profile
+    profile_text = f"{title}\nSkills: {skills}\nResponsibilities: {resp}\nKeywords: {kw}"
 
-    for _, job in jobs.iterrows():
-        desc = str(job.get("description", "")).strip()
-        sp = str(job.get("sellingPoints", "")).strip()
+    profiles.append({
+        "career": career,
+        "Title": title,
+        "ExperienceLevel": exp_level,
+        "YearsOfExperience": y_exp,
+        "Skills": skills,
+        "Responsibilities": resp,
+        "Keywords": kw,
+        "profile": profile_text
+    })
 
-        # Combine title, description, and selling points
-        profile_text = f"{title}\n{desc}\n{sp}"
-
-        profiles.append({
-            "career": title,
-            "profile": profile_text
-        })
-
-career_df = pd.DataFrame(
-    profiles
-)
-
+career_df = pd.DataFrame(profiles)
 career_df.to_csv(
     "data/processed/career_profiles_raw.csv",
     index=False
 )
 
 print(
-    f"Career Profiles Created: {len(career_df)} rows for {len(valid_titles)} unique careers"
-)
+    f"Career Profiles Created: {len(career_df)} rows for {career_df['career'].nunique()} unique careers"
+)

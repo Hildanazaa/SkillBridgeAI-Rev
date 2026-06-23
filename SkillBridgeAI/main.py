@@ -1,7 +1,6 @@
 import json
 
-from src.recommender.recommend import recommend_career
-from src.skill_extraction.skill_gap import analyze_skill_gap
+from core_logic import get_recommendations, get_skill_gap
 
 
 def main():
@@ -10,17 +9,11 @@ def main():
     print("        SkillBridge AI")
     print("===================================\n")
 
-    # =========================
-    # INPUT USER SKILL
-    # =========================
     user_skill_text = input(
         "Masukkan skill Anda (pisahkan dengan koma): "
     )
 
-    # =========================
-    # STEP 1: CAREER RECOMMENDATION
-    # =========================
-    recommendation_result = recommend_career(
+    recommendation_result = get_recommendations(
         user_skill_text
     )
 
@@ -34,21 +27,18 @@ def main():
         )
     )
 
-    # ambil top 1 career otomatis
+    if not recommendation_result["success"] or len(recommendation_result["recommendations"]) == 0:
+        print("\n===================================")
+        print("Process Terminated: No matching careers found.")
+        print("===================================\n")
+        return
+
     top_career = recommendation_result[
         "recommendations"
     ][0]["career"]
 
-    # =========================
-    # STEP 2: SKILL GAP ANALYSIS
-    # =========================
-    user_skills = [
-        skill.strip().lower()
-        for skill in user_skill_text.split(",")
-    ]
-
-    skill_gap_result = analyze_skill_gap(
-        user_skills=user_skills,
+    skill_gap_result = get_skill_gap(
+        user_skill_text=user_skill_text,
         target_career=top_career
     )
 
@@ -68,4 +58,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main()

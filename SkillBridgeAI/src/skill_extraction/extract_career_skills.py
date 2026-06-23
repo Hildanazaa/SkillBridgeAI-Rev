@@ -3,12 +3,10 @@ import json
 import re
 from src.skill_extraction.skills import SKILLS
 
-# Load career profiles
 df = pd.read_csv(
     "data/processed/career_profiles_raw.csv"
 )
 
-# Group profiles by career title to aggregate descriptions for extraction
 grouped_df = df.groupby("career")["profile"].apply(lambda x: " ".join(x.astype(str))).reset_index()
 
 career_skills = []
@@ -21,7 +19,6 @@ for _, row in grouped_df.iterrows():
         row["profile"]
     ).lower()
 
-    # Normalize spelling variations in the job posting text before word boundary matching
     profile = profile.replace("reactjs", "react").replace("react.js", "react").replace("react js", "react")
     profile = profile.replace("nextjs", "next.js").replace("next js", "next.js")
     profile = profile.replace("nodejs", "node.js").replace("node js", "node.js")
@@ -31,11 +28,20 @@ for _, row in grouped_df.iterrows():
     profile = profile.replace("powerbi", "power bi").replace("power bi", "power bi")
     profile = profile.replace("googleads", "google ads").replace("google ads", "google ads")
     profile = profile.replace("metaads", "meta ads").replace("meta ads", "meta ads")
+    
+    profile = profile.replace("go lang", "golang")
+    profile = profile.replace("tailwindcss", "tailwind")
+    profile = profile.replace("komunikasi", "communication")
+    profile = profile.replace("kerja sama", "teamwork").replace("kerjasama", "teamwork")
+    profile = profile.replace("kepemimpinan", "leadership")
+    profile = profile.replace("pemecahan masalah", "problem solving")
+    profile = profile.replace("kemampuan analitis", "analytical skills").replace("berpikir analitis", "analytical skills").replace("analisis", "analytical skills")
+    profile = profile.replace("kolaborasi", "collaboration")
+    profile = profile.replace("negosiasi", "negotiation")
 
     found_skills = []
 
     for skill in SKILLS:
-        # Check matching with word boundaries
         start_boundary = r'\b' if (skill[0].isalnum() or skill[0] == '_') else ''
         end_boundary = r'\b' if (skill[-1].isalnum() or skill[-1] == '_') else ''
         pattern = start_boundary + re.escape(skill) + end_boundary
@@ -50,7 +56,6 @@ for _, row in grouped_df.iterrows():
         )
     })
 
-# Save JSON
 with open(
     "data/processed/career_skills.json",
     "w",
@@ -68,7 +73,6 @@ print(
     f"Career Skills Created: {len(career_skills)}"
 )
 
-# Preview
 for item in career_skills[:5]:
 
     print("\nCareer:", item["career"])
