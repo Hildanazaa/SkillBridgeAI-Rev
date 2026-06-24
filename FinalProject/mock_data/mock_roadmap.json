@@ -1,0 +1,57 @@
+﻿{
+  "target_title": "Data Scientist",
+  "weeks": [
+    {
+      "week": 1,
+      "focus": "Data Manipulation & Statistics Dasar",
+      "days": [
+        {"day": 1, "topic": "Pandas Fundamentals", "detail": "DataFrame, Series, indexing, slicing", "resource": "Kaggle Learn: Pandas"},
+        {"day": 2, "topic": "Data Cleaning", "detail": "Handling missing values, duplicates", "resource": "Kaggle Learn: Data Cleaning"},
+        {"day": 3, "topic": "Statistik Deskriptif", "detail": "Mean, median, std, distribusi data", "resource": "StatQuest YouTube"},
+        {"day": 4, "topic": "Probability & Distribusi", "detail": "Normal distribution, hypothesis testing", "resource": "Khan Academy Statistics"},
+        {"day": 5, "topic": "Mini Project EDA", "detail": "Exploratory Data Analysis dari dataset Kaggle", "resource": "Kaggle Datasets"},
+        {"day": 6, "topic": "Review & Practice", "detail": "Ulang semua konsep minggu ini", "resource": "HackerRank Python"},
+        {"day": 7, "topic": "REST DAY", "detail": "Buffer catch-up jika ada yang tertinggal", "resource": "-"}
+      ]
+    },
+    {
+      "week": 2,
+      "focus": "Machine Learning Fundamentals",
+      "days": [
+        {"day": 1, "topic": "Konsep ML: Supervised vs Unsupervised", "detail": "Train/test split, overfitting", "resource": "Google ML Crash Course"},
+        {"day": 2, "topic": "Linear & Logistic Regression", "detail": "Implementasi dengan Scikit-learn", "resource": "Scikit-learn docs"},
+        {"day": 3, "topic": "Decision Tree & Random Forest", "detail": "Feature importance, hyperparameter", "resource": "Scikit-learn docs"},
+        {"day": 4, "topic": "Model Evaluation", "detail": "Confusion matrix, precision, recall, F1", "resource": "Scikit-learn metrics"},
+        {"day": 5, "topic": "Cross-validation & Pipeline", "detail": "k-fold CV, Pipeline Scikit-learn", "resource": "Scikit-learn User Guide"},
+        {"day": 6, "topic": "Mini Project: Classification", "detail": "Build classifier dengan dataset Titanic", "resource": "Kaggle"},
+        {"day": 7, "topic": "REST DAY", "detail": "Buffer catch-up", "resource": "-"}
+      ]
+    },
+    {
+      "week": 3,
+      "focus": "Data Visualization & Storytelling",
+      "days": [
+        {"day": 1, "topic": "Matplotlib Fundamentals", "detail": "Line, bar, scatter, histogram", "resource": "Matplotlib official tutorial"},
+        {"day": 2, "topic": "Seaborn untuk Statistik Visual", "detail": "Heatmap, pairplot, boxplot", "resource": "Seaborn gallery"},
+        {"day": 3, "topic": "Plotly Interactive Charts", "detail": "Chart interaktif untuk dashboard", "resource": "Plotly docs"},
+        {"day": 4, "topic": "Prinsip Visualisasi Data", "detail": "Memilih chart yang tepat", "resource": "Storytelling with Data"},
+        {"day": 5, "topic": "Dashboard dengan Streamlit", "detail": "Build mini dashboard interaktif", "resource": "Streamlit docs"},
+        {"day": 6, "topic": "Mini Project: Full EDA Report", "detail": "EDA lengkap dengan narasi insight", "resource": "Dataset pilihan sendiri"},
+        {"day": 7, "topic": "REST DAY", "detail": "Buffer catch-up", "resource": "-"}
+      ]
+    },
+    {
+      "week": 4,
+      "focus": "Deep Learning Intro & Portfolio",
+      "days": [
+        {"day": 1, "topic": "Neural Network Dasar", "detail": "Neuron, layer, activation function", "resource": "3Blue1Brown Neural Network series"},
+        {"day": 2, "topic": "TensorFlow & Keras Basics", "detail": "Build model sequential, compile, fit", "resource": "TensorFlow official tutorial"},
+        {"day": 3, "topic": "Image Classification CNN", "detail": "Convolutional layer, pooling", "resource": "TensorFlow CNN tutorial"},
+        {"day": 4, "topic": "Capstone Project Planning", "detail": "Pilih dataset, tentukan problem statement", "resource": "Kaggle Competitions"},
+        {"day": 5, "topic": "Capstone: Build & Train", "detail": "Implementasi model ML end-to-end", "resource": "-"},
+        {"day": 6, "topic": "Capstone: Dokumentasi & GitHub", "detail": "README, push ke GitHub", "resource": "GitHub"},
+        {"day": 7, "topic": "Review Final & Next Steps", "detail": "Evaluasi progress, next learning path", "resource": "-"}
+      ]
+    }
+  ]
+}
