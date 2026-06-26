@@ -2,9 +2,11 @@
     {
         "career": ".net Developer",
         "skills": [
+            "agile",
             "angular",
             "azure",
             "c#",
+            "ci/cd",
             "communication",
             "css",
             "docker",
@@ -13,6 +15,7 @@
             "javascript",
             "kubernetes",
             "leadership",
+            "microservices",
             "sql"
         ]
     },
@@ -22,12 +25,25 @@
             "aws",
             "azure",
             "c++",
+            "ci/cd",
+            "computer vision",
+            "deep learning",
             "docker",
+            "gcp",
+            "hadoop",
             "java",
+            "keras",
             "kubernetes",
             "mongodb",
+            "nlp",
+            "numpy",
+            "pandas",
             "python",
             "pytorch",
+            "r",
+            "regression",
+            "scikit-learn",
+            "spark",
             "sql",
             "tensorflow"
         ]
@@ -39,9 +55,11 @@
             "collaboration",
             "communication",
             "data analysis",
+            "data visualization",
             "javascript",
             "leadership",
             "machine learning",
+            "nlp",
             "python",
             "pytorch",
             "teamwork",
@@ -51,15 +69,20 @@
     {
         "career": "Android App Developer",
         "skills": [
+            "android",
             "git",
             "java",
             "kotlin",
-            "rest api"
+            "rest api",
+            "sqlite"
         ]
     },
     {
         "career": "Android Architect",
         "skills": [
+            "agile",
+            "android",
+            "ci/cd",
             "firebase",
             "java",
             "kotlin",
@@ -69,35 +92,48 @@
     {
         "career": "Android Developer",
         "skills": [
+            "agile",
+            "android",
+            "ci/cd",
             "firebase",
             "git",
             "java",
             "kotlin",
-            "rest api"
+            "rest api",
+            "sqlite"
         ]
     },
     {
         "career": "Android Development",
         "skills": [
+            "android",
             "git",
             "java",
             "kotlin",
-            "rest api"
+            "rest api",
+            "sqlite"
         ]
     },
     {
         "career": "Android Engineer",
         "skills": [
+            "agile",
+            "android",
+            "ci/cd",
             "firebase",
             "git",
             "java",
             "kotlin",
-            "rest api"
+            "rest api",
+            "sqlite"
         ]
     },
     {
         "career": "Android Solutions Architect",
         "skills": [
+            "agile",
+            "android",
+            "ci/cd",
             "firebase",
             "java",
             "kotlin",
@@ -107,6 +143,9 @@
     {
         "career": "Android Solutions Engineer",
         "skills": [
+            "agile",
+            "android",
+            "ci/cd",
             "firebase",
             "java",
             "kotlin",
@@ -116,6 +155,9 @@
     {
         "career": "Android Tech Lead",
         "skills": [
+            "agile",
+            "android",
+            "ci/cd",
             "firebase",
             "java",
             "kotlin",
@@ -132,6 +174,7 @@
             "javascript",
             "leadership",
             "machine learning",
+            "project management",
             "python",
             "teamwork"
         ]
@@ -139,10 +182,12 @@
     {
         "career": "Associate Android Developer",
         "skills": [
+            "android",
             "git",
             "java",
             "kotlin",
-            "rest api"
+            "rest api",
+            "sqlite"
         ]
     },
     {
@@ -166,15 +211,19 @@
         "career": "Associate Ios Engineer",
         "skills": [
             "git",
+            "ios",
+            "regression",
             "swift"
         ]
     },
     {
         "career": "Associate Network Engineer",
         "skills": [
+            "bash",
             "cisco",
             "dhcp",
             "dns",
+            "ios",
             "python"
         ]
     },
@@ -188,27 +237,36 @@
     {
         "career": "Associate Ux Designer",
         "skills": [
+            "adobe xd",
             "collaboration",
-            "figma"
+            "figma",
+            "sketch"
         ]
     },
     {
         "career": "Backend Developer",
         "skills": [
+            "agile",
             "aws",
             "azure",
+            "ci/cd",
+            "django",
             "docker",
             "express",
+            "flask",
+            "gcp",
             "git",
             "graphql",
             "java",
             "kubernetes",
+            "microservices",
             "mongodb",
             "mysql",
             "node.js",
             "postgresql",
             "python",
             "redis",
+            "spring boot",
             "sql"
         ]
     },
@@ -216,10 +274,16 @@
         "career": "Bi Analyst",
         "skills": [
             "data analysis",
+            "data warehousing",
+            "etl",
             "excel",
+            "looker",
             "mysql",
             "postgresql",
             "power bi",
+            "predictive modeling",
+            "redshift",
+            "snowflake",
             "sql",
             "statistics",
             "tableau"
@@ -230,14 +294,26 @@
         "skills": [
             "aws",
             "azure",
+            "bigquery",
             "collaboration",
+            "data engineering",
+            "data visualization",
+            "data warehousing",
+            "etl",
+            "gcp",
+            "hadoop",
             "java",
+            "kafka",
             "leadership",
             "linux",
             "machine learning",
             "mongodb",
             "power bi",
             "python",
+            "redshift",
+            "scala",
+            "snowflake",
+            "spark",
             "sql",
             "tableau",
             "teamwork",
@@ -254,6 +330,7 @@
             "git",
             "java",
             "leadership",
+            "project management",
             "python",
             "teamwork"
         ]
@@ -261,13 +338,17 @@
     {
         "career": "Business Analyst",
         "skills": [
+            "agile",
             "collaboration",
             "communication",
             "data analysis",
+            "data visualization",
             "excel",
             "leadership",
             "power bi",
             "problem solving",
+            "project management",
+            "sas",
             "sql",
             "tableau"
         ]
@@ -277,15 +358,20 @@
         "skills": [
             "aws",
             "azure",
+            "bash",
+            "gcp",
             "python"
         ]
     },
     {
         "career": "Cloud Architect",
         "skills": [
+            "ansible",
             "aws",
             "azure",
+            "bash",
             "docker",
+            "gcp",
             "kubernetes",
             "leadership",
             "python"
@@ -294,9 +380,11 @@
     {
         "career": "Cloud Automation Engineer",
         "skills": [
+            "ansible",
             "aws",
             "kubernetes",
-            "python"
+            "python",
+            "terraform"
         ]
     },
     {
@@ -304,31 +392,42 @@
         "skills": [
             "aws",
             "azure",
-            "python"
+            "python",
+            "terraform"
         ]
     },
     {
         "career": "Cloud Devsecops Architect",
         "skills": [
+            "ansible",
             "aws",
             "azure",
-            "python"
+            "ci/cd",
+            "python",
+            "terraform"
         ]
     },
     {
         "career": "Cloud Engineer",
         "skills": [
+            "ansible",
             "aws",
             "azure",
+            "bash",
+            "ci/cd",
             "dns",
             "docker",
+            "gcp",
             "git",
             "github",
+            "jenkins",
             "kubernetes",
             "leadership",
             "python",
+            "shell scripting",
             "sql",
             "teamwork",
+            "terraform",
             "vpn"
         ]
     },
@@ -337,7 +436,8 @@
         "skills": [
             "aws",
             "azure",
-            "python"
+            "python",
+            "terraform"
         ]
     },
     {
@@ -345,7 +445,8 @@
         "skills": [
             "aws",
             "azure",
-            "kubernetes"
+            "kubernetes",
+            "terraform"
         ]
     },
     {
@@ -353,12 +454,15 @@
         "skills": [
             "aws",
             "azure",
-            "python"
+            "gcp",
+            "python",
+            "terraform"
         ]
     },
     {
         "career": "Cloud Network Engineer",
         "skills": [
+            "ansible",
             "aws",
             "azure"
         ]
@@ -368,9 +472,11 @@
         "skills": [
             "aws",
             "azure",
+            "ci/cd",
             "docker",
             "kubernetes",
-            "python"
+            "python",
+            "terraform"
         ]
     },
     {
@@ -379,6 +485,7 @@
             "aws",
             "azure",
             "firewall management",
+            "gcp",
             "siem tools"
         ]
     },
@@ -397,7 +504,8 @@
             "docker",
             "java",
             "linux",
-            "python"
+            "python",
+            "terraform"
         ]
     },
     {
@@ -405,7 +513,10 @@
         "skills": [
             "collaboration",
             "communication",
+            "content marketing",
+            "google analytics",
             "leadership",
+            "project management",
             "seo",
             "teamwork"
         ]
@@ -415,7 +526,10 @@
         "skills": [
             "collaboration",
             "communication",
+            "copywriting",
+            "email marketing",
             "leadership",
+            "project management",
             "seo"
         ]
     },
@@ -444,6 +558,7 @@
         "skills": [
             "aws",
             "azure",
+            "bash",
             "c++",
             "firewalls",
             "linux",
@@ -471,26 +586,55 @@
     {
         "career": "Data Analyst",
         "skills": [
+            "a/b testing",
+            "bigquery",
             "data analysis",
+            "data engineering",
+            "data visualization",
+            "data warehousing",
+            "etl",
             "excel",
+            "google data studio",
+            "hadoop",
+            "hypothesis testing",
+            "kafka",
             "leadership",
+            "looker",
             "machine learning",
+            "matplotlib",
             "mysql",
+            "pandas",
             "postgresql",
             "power bi",
+            "predictive modeling",
             "python",
+            "r",
+            "redshift",
+            "regression",
+            "sas",
+            "seaborn",
+            "snowflake",
+            "spark",
             "sql",
+            "statistical modeling",
             "statistics",
-            "tableau"
+            "tableau",
+            "time-series analysis"
         ]
     },
     {
         "career": "Data Analyst / Data Scientist",
         "skills": [
+            "data visualization",
             "machine learning",
+            "matplotlib",
             "mongodb",
             "mysql",
+            "numpy",
+            "pandas",
             "python",
+            "r",
+            "seaborn",
             "sql"
         ]
     },
@@ -499,12 +643,24 @@
         "skills": [
             "aws",
             "azure",
+            "bigquery",
+            "ci/cd",
+            "data engineering",
+            "data warehousing",
+            "etl",
+            "gcp",
+            "hadoop",
             "java",
+            "kafka",
             "linux",
             "mongodb",
             "mysql",
             "postgresql",
             "python",
+            "redshift",
+            "scala",
+            "snowflake",
+            "spark",
             "sql"
         ]
     },
@@ -512,10 +668,17 @@
         "career": "Data Science",
         "skills": [
             "data analysis",
+            "data visualization",
             "machine learning",
+            "matplotlib",
             "mysql",
+            "numpy",
+            "pandas",
             "postgresql",
             "python",
+            "r",
+            "regression",
+            "seaborn",
             "sql"
         ]
     },
@@ -523,10 +686,18 @@
         "career": "Data Science Associate",
         "skills": [
             "data analysis",
+            "data visualization",
+            "etl",
             "machine learning",
+            "matplotlib",
             "mysql",
+            "numpy",
+            "pandas",
             "postgresql",
             "python",
+            "r",
+            "regression",
+            "seaborn",
             "sql"
         ]
     },
@@ -534,11 +705,20 @@
         "career": "Data Science Team Lead",
         "skills": [
             "aws",
+            "etl",
+            "gcp",
+            "hadoop",
             "java",
             "leadership",
             "machine learning",
+            "nlp",
             "power bi",
+            "predictive modeling",
             "python",
+            "r",
+            "regression",
+            "scala",
+            "spark",
             "sql",
             "tableau"
         ]
@@ -548,15 +728,29 @@
         "skills": [
             "aws",
             "data analysis",
+            "data visualization",
+            "deep learning",
+            "etl",
             "excel",
             "git",
+            "hadoop",
             "java",
             "machine learning",
+            "matplotlib",
             "mongodb",
             "mysql",
+            "nlp",
+            "numpy",
+            "pandas",
             "postgresql",
             "power bi",
+            "predictive modeling",
             "python",
+            "r",
+            "regression",
+            "scala",
+            "seaborn",
+            "spark",
             "sql",
             "tableau"
         ]
@@ -566,33 +760,48 @@
         "skills": [
             "aws",
             "azure",
+            "ci/cd",
             "docker",
             "kubernetes",
-            "python"
+            "python",
+            "terraform"
         ]
     },
     {
         "career": "Devops Engineer",
         "skills": [
+            "ansible",
             "aws",
             "azure",
+            "bash",
+            "ci/cd",
             "docker",
+            "gcp",
             "git",
             "github",
+            "jenkins",
             "kubernetes",
             "linux",
-            "python"
+            "microservices",
+            "python",
+            "terraform"
         ]
     },
     {
         "career": "Digital Marketing Specialist",
         "skills": [
+            "a/b testing",
             "collaboration",
             "communication",
+            "content marketing",
+            "copywriting",
+            "email marketing",
             "google ads",
+            "google analytics",
             "leadership",
             "sem",
             "seo",
+            "social media marketing",
             "tableau",
             "teamwork"
         ]
@@ -601,7 +810,8 @@
         "career": "Enterprise Cloud Architect",
         "skills": [
             "kubernetes",
-            "leadership"
+            "leadership",
+            "terraform"
         ]
     },
     {
@@ -619,17 +829,25 @@
     {
         "career": "Entry",
         "skills": [
+            "android",
             "c++",
             "dns",
             "git",
             "github",
+            "ios",
             "java",
             "kotlin",
             "malware analysis",
+            "matplotlib",
             "nagios",
             "python",
             "pytorch",
+            "r",
+            "regression",
             "rest api",
+            "scikit-learn",
+            "seaborn",
+            "sqlite",
             "statistics",
             "swift",
             "tcp/ip",
@@ -639,6 +857,8 @@
     {
         "career": "Ethical Hacker",
         "skills": [
+            "analytical skills",
+            "bash",
             "c++",
             "communication",
             "cryptography",
@@ -646,6 +866,7 @@
             "leadership",
             "linux",
             "malware analysis",
+            "project management",
             "python",
             "teamwork"
         ]
@@ -661,6 +882,9 @@
             "javascript",
             "leadership",
             "machine learning",
+            "microservices",
+            "predictive modeling",
+            "project management",
             "python",
             "sql",
             "teamwork"
@@ -671,6 +895,7 @@
         "skills": [
             "angular",
             "bootstrap",
+            "ci/cd",
             "css",
             "git",
             "html",
@@ -683,13 +908,18 @@
     {
         "career": "Full Stack Developer",
         "skills": [
+            "agile",
             "angular",
+            "ci/cd",
             "css",
+            "django",
             "docker",
+            "flask",
             "git",
             "html",
             "javascript",
             "kubernetes",
+            "microservices",
             "mongodb",
             "mysql",
             "node.js",
@@ -711,6 +941,7 @@
             "git",
             "java",
             "leadership",
+            "project management",
             "python",
             "teamwork"
         ]
@@ -719,6 +950,7 @@
         "career": "Graduate Ios Developer",
         "skills": [
             "git",
+            "ios",
             "swift"
         ]
     },
@@ -740,6 +972,7 @@
     {
         "career": "Graphic Designer",
         "skills": [
+            "adobe xd",
             "communication",
             "css",
             "figma",
@@ -753,7 +986,8 @@
         "skills": [
             "aws",
             "azure",
-            "python"
+            "python",
+            "terraform"
         ]
     },
     {
@@ -790,13 +1024,16 @@
     {
         "career": "Interaction Designer",
         "skills": [
-            "figma"
+            "adobe xd",
+            "figma",
+            "sketch"
         ]
     },
     {
         "career": "Ios App Developer",
         "skills": [
             "git",
+            "ios",
             "swift"
         ]
     },
@@ -804,29 +1041,39 @@
         "career": "Ios Application Developer",
         "skills": [
             "firebase",
+            "ios",
+            "jenkins",
             "swift"
         ]
     },
     {
         "career": "Ios Architect",
         "skills": [
+            "ci/cd",
+            "ios",
             "swift"
         ]
     },
     {
         "career": "Ios Developer",
         "skills": [
+            "agile",
+            "ci/cd",
             "collaboration",
             "git",
             "github",
             "graphql",
+            "ios",
             "swift"
         ]
     },
     {
         "career": "Ios Engineer",
         "skills": [
+            "ci/cd",
             "graphql",
+            "ios",
+            "jenkins",
             "swift"
         ]
     },
@@ -834,6 +1081,7 @@
         "career": "Ios Mobile App Engineer",
         "skills": [
             "firebase",
+            "ios",
             "kotlin",
             "swift"
         ]
@@ -842,6 +1090,7 @@
         "career": "Ios Mobile Developer",
         "skills": [
             "git",
+            "ios",
             "swift"
         ]
     },
@@ -849,28 +1098,38 @@
         "career": "Ios Solutions Engineer",
         "skills": [
             "graphql",
+            "ios",
             "swift"
         ]
     },
     {
         "career": "Ios Tech Lead",
         "skills": [
+            "agile",
+            "ci/cd",
+            "ios",
             "rest api",
+            "scrum",
             "swift"
         ]
     },
     {
         "career": "Iot Engineer",
         "skills": [
+            "agile",
             "aws",
             "azure",
             "c++",
+            "ci/cd",
             "collaboration",
             "communication",
+            "data visualization",
+            "gcp",
             "java",
             "leadership",
             "machine learning",
             "power bi",
+            "project management",
             "python",
             "tableau",
             "tcp/ip",
@@ -889,7 +1148,9 @@
     {
         "career": "Java Developer",
         "skills": [
+            "agile",
             "angular",
+            "ci/cd",
             "collaboration",
             "css",
             "docker",
@@ -897,14 +1158,18 @@
             "html",
             "java",
             "javascript",
+            "jenkins",
+            "kafka",
             "kubernetes",
             "leadership",
+            "microservices",
             "mongodb",
             "mysql",
             "postgresql",
             "problem solving",
             "react",
             "rest api",
+            "spring boot",
             "sql",
             "teamwork"
         ]
@@ -913,6 +1178,7 @@
         "career": "Javascript Developer",
         "skills": [
             "angular",
+            "ci/cd",
             "collaboration",
             "communication",
             "docker",
@@ -922,6 +1188,7 @@
             "javascript",
             "leadership",
             "node.js",
+            "project management",
             "react",
             "rest api",
             "teamwork",
@@ -932,6 +1199,9 @@
     {
         "career": "Lead Android Engineer",
         "skills": [
+            "agile",
+            "android",
+            "ci/cd",
             "firebase",
             "java",
             "kotlin",
@@ -944,7 +1214,9 @@
             "aws",
             "azure",
             "leadership",
-            "python"
+            "microservices",
+            "python",
+            "terraform"
         ]
     },
     {
@@ -959,12 +1231,19 @@
         "skills": [
             "aws",
             "azure",
+            "etl",
             "git",
+            "hadoop",
             "java",
             "leadership",
             "machine learning",
+            "nlp",
             "power bi",
             "python",
+            "r",
+            "regression",
+            "scala",
+            "spark",
             "sql",
             "tableau"
         ]
@@ -972,6 +1251,9 @@
     {
         "career": "Lead Ios Engineer",
         "skills": [
+            "agile",
+            "ci/cd",
+            "ios",
             "swift"
         ]
     },
@@ -980,11 +1262,23 @@
         "skills": [
             "aws",
             "azure",
+            "ci/cd",
+            "computer vision",
+            "deep learning",
+            "etl",
+            "gcp",
+            "hadoop",
             "java",
+            "keras",
             "leadership",
             "machine learning",
+            "nlp",
             "python",
             "pytorch",
+            "r",
+            "scala",
+            "scikit-learn",
+            "spark",
             "sql",
             "tensorflow"
         ]
@@ -994,11 +1288,18 @@
         "skills": [
             "aws",
             "azure",
+            "deep learning",
+            "etl",
+            "hadoop",
             "java",
             "leadership",
             "machine learning",
+            "nlp",
             "power bi",
             "python",
+            "r",
+            "scala",
+            "spark",
             "sql",
             "tableau"
         ]
@@ -1008,10 +1309,22 @@
         "skills": [
             "aws",
             "azure",
+            "ci/cd",
+            "computer vision",
+            "deep learning",
+            "etl",
+            "gcp",
+            "hadoop",
             "java",
+            "keras",
             "leadership",
+            "nlp",
             "python",
             "pytorch",
+            "r",
+            "scala",
+            "scikit-learn",
+            "spark",
             "sql",
             "tensorflow"
         ]
@@ -1037,6 +1350,7 @@
     {
         "career": "Lead Ux Designer",
         "skills": [
+            "agile",
             "collaboration",
             "figma"
         ]
@@ -1046,16 +1360,34 @@
         "skills": [
             "aws",
             "azure",
+            "ci/cd",
+            "computer vision",
+            "data visualization",
+            "deep learning",
+            "etl",
+            "gcp",
             "git",
             "github",
+            "hadoop",
             "java",
+            "keras",
             "leadership",
             "machine learning",
+            "matplotlib",
             "mongodb",
             "mysql",
+            "nlp",
+            "numpy",
+            "pandas",
             "power bi",
             "python",
             "pytorch",
+            "r",
+            "regression",
+            "scala",
+            "scikit-learn",
+            "seaborn",
+            "spark",
             "sql",
             "statistics",
             "tableau",
@@ -1067,11 +1399,19 @@
         "skills": [
             "aws",
             "azure",
+            "deep learning",
+            "etl",
+            "hadoop",
             "java",
             "leadership",
             "machine learning",
+            "nlp",
             "power bi",
             "python",
+            "r",
+            "regression",
+            "scala",
+            "spark",
             "sql",
             "tableau"
         ]
@@ -1081,10 +1421,15 @@
         "skills": [
             "communication",
             "data analysis",
+            "data visualization",
             "excel",
             "leadership",
             "power bi",
+            "predictive modeling",
             "python",
+            "r",
+            "regression",
+            "sas",
             "sql",
             "tableau"
         ]
@@ -1092,23 +1437,36 @@
     {
         "career": "Marketing Specialist",
         "skills": [
+            "canva",
             "collaboration",
             "communication",
+            "content marketing",
+            "copywriting",
             "data analysis",
+            "email marketing",
+            "google analytics",
             "leadership",
             "sem",
             "seo",
+            "social media marketing",
             "tableau"
         ]
     },
     {
         "career": "Ml Engineer",
         "skills": [
+            "data visualization",
             "git",
             "github",
             "java",
+            "keras",
+            "matplotlib",
             "python",
             "pytorch",
+            "r",
+            "regression",
+            "scikit-learn",
+            "seaborn",
             "statistics",
             "tensorflow"
         ]
@@ -1118,9 +1476,21 @@
         "skills": [
             "aws",
             "azure",
+            "ci/cd",
+            "computer vision",
+            "deep learning",
+            "etl",
+            "gcp",
+            "hadoop",
             "java",
+            "keras",
+            "nlp",
             "python",
             "pytorch",
+            "r",
+            "scala",
+            "scikit-learn",
+            "spark",
             "sql",
             "tensorflow"
         ]
@@ -1130,8 +1500,11 @@
         "skills": [
             "aws",
             "azure",
+            "gcp",
             "kubernetes",
-            "leadership"
+            "leadership",
+            "microservices",
+            "terraform"
         ]
     },
     {
@@ -1139,13 +1512,17 @@
         "skills": [
             "cisco",
             "dhcp",
+            "ios",
             "vpn"
         ]
     },
     {
         "career": "Network Automation Engineer",
         "skills": [
+            "ansible",
+            "bash",
             "cisco",
+            "ios",
             "python"
         ]
     },
@@ -1161,6 +1538,7 @@
             "dns",
             "firewalls",
             "ids/ips",
+            "ios",
             "lan/wan",
             "mpls",
             "nagios",
@@ -1216,6 +1594,9 @@
     {
         "career": "Principal Android Developer",
         "skills": [
+            "agile",
+            "android",
+            "ci/cd",
             "firebase",
             "java",
             "kotlin",
@@ -1225,6 +1606,9 @@
     {
         "career": "Principal Android Engineer",
         "skills": [
+            "agile",
+            "android",
+            "ci/cd",
             "firebase",
             "java",
             "kotlin",
@@ -1235,11 +1619,20 @@
         "career": "Principal Data Scientist",
         "skills": [
             "aws",
+            "deep learning",
+            "etl",
+            "gcp",
+            "hadoop",
             "java",
             "leadership",
             "machine learning",
+            "nlp",
             "power bi",
+            "predictive modeling",
             "python",
+            "r",
+            "scala",
+            "spark",
             "sql",
             "tableau"
         ]
@@ -1247,6 +1640,8 @@
     {
         "career": "Principal Ios Developer",
         "skills": [
+            "ci/cd",
+            "ios",
             "swift"
         ]
     },
@@ -1255,11 +1650,23 @@
         "skills": [
             "aws",
             "azure",
+            "ci/cd",
+            "computer vision",
+            "deep learning",
+            "etl",
+            "gcp",
+            "hadoop",
             "java",
+            "keras",
             "leadership",
             "machine learning",
+            "nlp",
             "python",
             "pytorch",
+            "r",
+            "scala",
+            "scikit-learn",
+            "spark",
             "sql",
             "tensorflow"
         ]
@@ -1269,7 +1676,8 @@
         "skills": [
             "cisco",
             "cisco nexus",
-            "leadership"
+            "leadership",
+            "project management"
         ]
     },
     {
@@ -1283,13 +1691,18 @@
     {
         "career": "Principal Ux Designer",
         "skills": [
+            "a/b testing",
             "figma",
-            "leadership"
+            "leadership",
+            "sketch"
         ]
     },
     {
         "career": "Product Designer",
         "skills": [
+            "a/b testing",
+            "adobe xd",
+            "agile",
             "collaboration",
             "css",
             "figma",
@@ -1298,18 +1711,23 @@
             "javascript",
             "leadership",
             "photoshop",
+            "sketch",
             "teamwork"
         ]
     },
     {
         "career": "Product Manager",
         "skills": [
+            "a/b testing",
+            "agile",
             "collaboration",
             "communication",
             "data analysis",
             "excel",
             "figma",
+            "google analytics",
             "leadership",
+            "scrum",
             "sql",
             "tableau",
             "teamwork"
@@ -1318,10 +1736,13 @@
     {
         "career": "Project Manager",
         "skills": [
+            "agile",
             "collaboration",
             "communication",
             "leadership",
             "negotiation",
+            "project management",
+            "scrum",
             "teamwork"
         ]
     },
@@ -1333,18 +1754,26 @@
             "communication",
             "css",
             "data analysis",
+            "django",
             "docker",
+            "fastapi",
+            "flask",
             "git",
             "graphql",
             "html",
             "javascript",
             "kubernetes",
             "leadership",
+            "matplotlib",
             "mongodb",
             "mysql",
+            "numpy",
+            "pandas",
             "postgresql",
+            "project management",
             "python",
             "pytorch",
+            "scikit-learn",
             "sql",
             "teamwork",
             "tensorflow"
@@ -1354,10 +1783,13 @@
         "career": "Qa Engineer",
         "skills": [
             "c#",
+            "ci/cd",
             "java",
             "javascript",
+            "jenkins",
             "leadership",
-            "python"
+            "python",
+            "regression"
         ]
     },
     {
@@ -1366,10 +1798,14 @@
             "c++",
             "collaboration",
             "communication",
+            "computer vision",
             "leadership",
             "machine learning",
+            "matlab",
             "problem solving",
+            "project management",
             "python",
+            "r",
             "teamwork"
         ]
     },
@@ -1405,9 +1841,13 @@
         "career": "Seo Specialist",
         "skills": [
             "communication",
+            "content marketing",
+            "copywriting",
             "css",
+            "google analytics",
             "html",
             "javascript",
+            "looker",
             "machine learning",
             "seo"
         ]
@@ -1415,20 +1855,27 @@
     {
         "career": "Site Reliability Engineer",
         "skills": [
+            "ansible",
             "aws",
             "azure",
+            "bash",
+            "ci/cd",
             "collaboration",
             "communication",
             "dns",
             "docker",
+            "gcp",
             "github",
             "java",
+            "jenkins",
             "kubernetes",
             "leadership",
             "linux",
             "nagios",
             "python",
-            "tcp/ip"
+            "shell scripting",
+            "tcp/ip",
+            "terraform"
         ]
     },
     {
@@ -1443,26 +1890,36 @@
     {
         "career": "Software Developer",
         "skills": [
+            "agile",
+            "android",
             "angular",
             "aws",
             "azure",
             "c#",
             "c++",
+            "ci/cd",
             "collaboration",
             "communication",
             "css",
+            "django",
             "docker",
             "git",
             "html",
+            "ios",
             "java",
             "javascript",
             "kotlin",
             "kubernetes",
             "leadership",
             "machine learning",
+            "microservices",
             "node.js",
+            "pandas",
             "python",
             "react",
+            "scikit-learn",
+            "scrum",
+            "spring boot",
             "sql",
             "swift",
             "teamwork",
@@ -1473,11 +1930,14 @@
     {
         "career": "Software Engineer",
         "skills": [
+            "agile",
             "angular",
             "aws",
             "azure",
             "c++",
+            "ci/cd",
             "css",
+            "django",
             "docker",
             "express",
             "figma",
@@ -1489,6 +1949,7 @@
             "kubernetes",
             "leadership",
             "machine learning",
+            "microservices",
             "mongodb",
             "mysql",
             "node.js",
@@ -1496,6 +1957,7 @@
             "python",
             "react",
             "rest api",
+            "spring boot",
             "sql",
             "typescript",
             "vue"
@@ -1504,13 +1966,18 @@
     {
         "career": "Software Tester (sdet)",
         "skills": [
+            "agile",
             "azure",
             "c#",
+            "ci/cd",
             "collaboration",
             "communication",
             "java",
+            "jenkins",
             "leadership",
             "python",
+            "regression",
+            "scrum",
             "teamwork"
         ]
     },
@@ -1519,21 +1986,27 @@
         "skills": [
             "aws",
             "azure",
+            "ci/cd",
             "collaboration",
             "communication",
             "docker",
+            "gcp",
             "java",
             "javascript",
             "kubernetes",
             "leadership",
+            "microservices",
             "node.js",
+            "project management",
             "python",
-            "teamwork"
+            "teamwork",
+            "terraform"
         ]
     },
     {
         "career": "Staff Ux Designer",
         "skills": [
+            "a/b testing",
             "figma",
             "leadership"
         ]
@@ -1541,27 +2014,34 @@
     {
         "career": "Swift Developer",
         "skills": [
+            "agile",
             "git",
+            "ios",
             "swift"
         ]
     },
     {
         "career": "System Engineer",
         "skills": [
+            "ansible",
             "aws",
             "azure",
+            "bash",
+            "ci/cd",
             "docker",
             "firewalls",
             "kubernetes",
             "linux",
             "nagios",
             "python",
-            "tcp/ip"
+            "tcp/ip",
+            "terraform"
         ]
     },
     {
         "career": "Technical Writer",
         "skills": [
+            "agile",
             "collaboration",
             "css",
             "html"
@@ -1583,29 +2063,37 @@
         "career": "Test Automation Engineer",
         "skills": [
             "c#",
+            "ci/cd",
             "docker",
             "java",
             "javascript",
+            "jenkins",
             "leadership",
-            "python"
+            "python",
+            "regression"
         ]
     },
     {
         "career": "Ui Designer",
         "skills": [
+            "a/b testing",
+            "adobe xd",
             "collaboration",
             "css",
             "figma",
             "html",
             "illustrator",
             "leadership",
-            "photoshop"
+            "photoshop",
+            "sketch"
         ]
     },
     {
         "career": "Ux",
         "skills": [
-            "figma"
+            "adobe xd",
+            "figma",
+            "sketch"
         ]
     },
     {
@@ -1617,30 +2105,38 @@
     {
         "career": "Ux Apprentice",
         "skills": [
-            "figma"
+            "adobe xd",
+            "figma",
+            "sketch"
         ]
     },
     {
         "career": "Ux Architect",
         "skills": [
+            "agile",
             "figma"
         ]
     },
     {
         "career": "Ux Consultant",
         "skills": [
-            "figma"
+            "agile",
+            "figma",
+            "sketch"
         ]
     },
     {
         "career": "Ux Design",
         "skills": [
-            "figma"
+            "adobe xd",
+            "figma",
+            "sketch"
         ]
     },
     {
         "career": "Ux Design Lead",
         "skills": [
+            "agile",
             "figma",
             "leadership"
         ]
@@ -1648,10 +2144,13 @@
     {
         "career": "Ux Designer",
         "skills": [
+            "a/b testing",
+            "adobe xd",
             "collaboration",
             "css",
             "figma",
-            "html"
+            "html",
+            "sketch"
         ]
     },
     {
@@ -1664,12 +2163,14 @@
     {
         "career": "Ux Strategist",
         "skills": [
+            "a/b testing",
             "figma"
         ]
     },
     {
         "career": "Vibe Coder",
         "skills": [
+            "agile",
             "collaboration",
             "communication",
             "css",
@@ -1677,6 +2178,7 @@
             "javascript",
             "leadership",
             "problem solving",
+            "project management",
             "python",
             "react",
             "teamwork",
@@ -1688,7 +2190,9 @@
         "skills": [
             "angular",
             "aws",
+            "ci/cd",
             "css",
+            "django",
             "docker",
             "express",
             "git",

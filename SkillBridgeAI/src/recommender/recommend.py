@@ -217,14 +217,20 @@ def recommend_career(user_skill_text: str, top_k: int = 5):
         if len(normalized_user.intersection(c_skills)) == 0:
             continue  # Skip careers that don't match any of the user's skills
 
-        # Calibrate raw similarity to user-friendly 0-100 score range
+        # Berapa banyak skill user yang beririsan langsung dengan kebutuhan profesi tersebut
+        matched_exact_count = len(normalized_user.intersection(c_skills))
+        total_career_skills = len(c_skills) if c_skills else 1
+        rasio_match_riil = matched_exact_count / total_career_skills
+        
+        if matched_exact_count < 2:
+            continue
+
+        absolute_match_ratio = matched_exact_count / max(len(normalized_user), 1)
+        
+        # Ambil nilai kesamaan semantik asli (raw similarity)
         raw_sim = float(similarities[idx])
-        if raw_sim >= 0.50:
-            score = 90.0 + (raw_sim - 0.50) / 0.50 * 10.0
-        elif raw_sim >= 0.20:
-            score = 20.0 + (raw_sim - 0.20) / 0.30 * 70.0
-        else:
-            score = max(0.0, raw_sim * 100)
+        
+        score = (rasio_match_riil * 20) + (absolute_match_ratio * 50) + (max(0.0, raw_sim) * 30)
         score = float(max(0.0, min(100.0, score)))
 
         # Suitability threshold based on calibrated score
@@ -270,3 +276,10 @@ def recommend_career(user_skill_text: str, top_k: int = 5):
         "success": True,
         "recommendations": top_recommendations
     }
+
+def get_all_registered_careers() -> list:
+    """Mendapatkan seluruh daftar nama profesi unik yang terdaftar di database lama."""
+    try:
+        return sorted(careers["career"].unique().tolist())
+    except Exception:
+        return []

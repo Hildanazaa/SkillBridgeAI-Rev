@@ -261,6 +261,12 @@ def analyze_user(
             gap_percentage=gap_pct, 
             readiness_score=readiness_scr
         )
+    else:
+        # Jika user sudah 100% menguasai semua skill inti profesi tersebut
+        roadmap_result = {
+            "success": True,
+            "message": "Selamat! Anda sudah menguasai semua keahlian utama untuk profesi ini."
+        }
 
     return {
         "success": True,
@@ -276,7 +282,7 @@ def analyze_user(
 if __name__ == "__main__":
 
     result = analyze_user(
-        user_skill_text="python, sql, excel"
+        user_skill_text="python, sql, excel, pandas, numpy, data visualization, power bi"
     )
 
     print(

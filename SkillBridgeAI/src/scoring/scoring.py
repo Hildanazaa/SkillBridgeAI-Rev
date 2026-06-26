@@ -23,7 +23,14 @@ def clean_title(title):
 
     return title
 
-data["Title_Clean"] = data["Title"].apply(clean_title)
+#Deteksi otomatis kolom 'career' atau 'Title' agar tidak KeyError
+if "career" in data.columns:
+    data["Title_Clean"] = data["career"].apply(clean_title)
+elif "Title" in data.columns:
+    data["Title_Clean"] = data["Title"].apply(clean_title)
+else:
+    # Fallback jika kolom pertama yang merupakan nama profesi
+    data["Title_Clean"] = data.iloc[:, 0].apply(clean_title)
 
 def combine_unique_skills(series):
     skills = set()
@@ -95,7 +102,8 @@ def analyze_selected_job(user_input_text,selected_job_title,data_df,model_encode
 
     #semantic match
     user_emb = model_encoder.encode([user_input_text])[0]
-    job_emb = model.encode([job_row["job_text"]])[0]
+    job_emb = model_encoder.encode([job_row["job_text"]])[0]
+    
     semantic_score = cosine_similarity([user_emb],[job_emb])[0][0]
     semantic_score = round(semantic_score * 100,2)
 
@@ -121,7 +129,7 @@ def analyze_selected_job(user_input_text,selected_job_title,data_df,model_encode
         for i, job_skill in enumerate(job_skills_list):
             sims = cosine_similarity([job_embs[i]],user_embs)[0]
             best_similarity = max(sims)
-            if best_similarity >= 0.7:  #treshold SBERT u/ mencocokkan skill
+            if best_similarity >= 0.85:  #treshold SBERT u/ mencocokkan skill
                 matched_skills.append(job_skill)
     missing_skills = sorted(list(set(job_skills) - set(matched_skills)))
     #kalkulasi skor kesiapan(readiness score)
@@ -144,7 +152,8 @@ def analyze_selected_job(user_input_text,selected_job_title,data_df,model_encode
         "readiness_score":f"{readiness_score:.2f}%",
         "gap_percentage":f"{gap_percentage:.2f}%"}
 
-user_input = "python, hadoop"
-selected_job = "Data Analyst"
-result = analyze_selected_job(user_input, selected_job, data_grouped, model)
-result
+if __name__ == "__main__":
+    user_input = "python, hadoop"
+    selected_job = "Data Analyst"
+    result = analyze_selected_job(user_input, selected_job, data_grouped, model)
+    print(result)
