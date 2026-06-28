@@ -1,15 +1,17 @@
 import streamlit as st
+import os
 from dotenv import load_dotenv
 from utils.state import init_session_state
 from utils.styles import inject_styles
 from utils.api import get_recommendations, get_analysis, get_roadmap, get_all_careers
+_APP_DIR = os.path.dirname(os.path.abspath(__file__))
 
 load_dotenv()
 
 # ─────────────────────────────────────────────────────────────────────────────
 st.set_page_config(
     page_title="SkillBridge AI",
-    page_icon="SkillBridgeAI.png",
+    page_icon=os.path.join(_APP_DIR, "SkillBridgeAI.png"),
     layout="wide"
 )
 
@@ -22,7 +24,7 @@ with st.container(border=True):
     col_logo, col_title = st.columns([1, 11])
 
     with col_logo:
-        st.image("SkillBridgeAI.png", width=75)
+        st.image(os.path.join(_APP_DIR, "SkillBridgeAI.png"), width=75)
 
     with col_title:
         st.markdown("""
