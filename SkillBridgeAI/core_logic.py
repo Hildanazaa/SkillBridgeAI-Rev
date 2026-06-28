@@ -25,13 +25,11 @@ logging.basicConfig(
 
 
 def validate_input(user_skill_text: str):
-
-    if not user_skill_text:
-        return False, "Masukkan minimal 1 skill"
-
-    if len(user_skill_text.strip()) < 2:
-        return False, "Input skill terlalu pendek"
-
+    if not user_skill_text or not user_skill_text.strip():
+        return False, "Masukkan minimal 2 skill"
+    skills = [s.strip() for s in user_skill_text.split(",") if s.strip()]
+    if len(skills) < 2:
+        return False, "Masukkan minimal 2 skill (pisahkan dengan koma). Contoh: python, sql"
     return True, None
 
 

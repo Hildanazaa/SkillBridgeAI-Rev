@@ -2,7 +2,7 @@ import streamlit as st
 from dotenv import load_dotenv
 from utils.state import init_session_state
 from utils.styles import inject_styles
-from utils.api import get_recommendations, get_analysis, get_roadmap
+from utils.api import get_recommendations, get_analysis, get_roadmap, get_all_careers
 
 load_dotenv()
 
@@ -73,13 +73,13 @@ with col_left:
             <span style="font-size:16px;">📋</span>
             <span style="font-size:16px; font-weight:700; color:#111827;">Masukkan Keahlian Anda</span>
         </div>
-        <p style="color:#6b7280; font-size:13px; margin:0;">Tuliskan semua skill, bahasa pemrograman, framework, atau tool yang Anda kuasai saat ini secara bebas.</p>
+        <p style="color:#6b7280; font-size:13px; margin:0;">Tuliskan skill, bahasa pemrograman, framework, atau tool yang Anda kuasai - pisahkan dengan koma..</p>
     </div>
     """, unsafe_allow_html=True)
 
     user_input = st.text_area(
         label="skill_input",
-        placeholder="Saya memahami pemrograman Python dasar, analisis data sederhana dengan Microsoft Excel, dan visualisasi data menggunakan library Matplotlib.",
+        placeholder="Contoh: python, sql, excel, pandas, data visualization, power bi",
         height=150,
         key="input_box",
         label_visibility="collapsed"
@@ -98,21 +98,44 @@ with col_left:
         if not user_input.strip():
             st.warning("Harap masukkan skill kamu terlebih dahulu.")
         else:
-            with st.spinner("Menganalisis skill..."):
-                raw = get_recommendations(user_input)
-                if not raw.get("success"):
-                    st.error(f"Gagal mengambil rekomendasi: {raw.get('message', 'Unknown error')}")
-                else:
-                    st.session_state.recommendations      = raw.get("recommendations", [])
-                    st.session_state.user_skills_text     = user_input
-                    st.session_state.show_recommendations = True
-                    st.session_state.show_evaluation      = False
-                    st.session_state.analysis             = None
-                    st.session_state.roadmap              = None
+            # Reset semua state sebelumnya
+            st.session_state.show_evaluation  = False
+            st.session_state.analysis         = None
+            st.session_state.roadmap          = None
+            st.session_state.selected_career  = None
+            # TAMBAHKAN validasi minimal 2 skill DI SINI
+            skills_list = [s.strip() for s in user_input.split(",") if s.strip()]
+            if len(skills_list) < 2:
+                st.warning("⚠️ Masukkan minimal 2 skill (pisahkan dengan koma). Contoh: python, sql")
+                # Reset rekomendasi lama juga
+                st.session_state.recommendations      = None
+                st.session_state.show_recommendations = False
+                st.session_state.career_dropdown      = "-- Pilih Profesi Impian Anda --"
+            else:
+                with st.spinner("Menganalisis skill..."):
+                    raw = get_recommendations(user_input)
+                    if not raw.get("success"):
+                        st.error(f"Gagal mengambil rekomendasi: {raw.get('message', 'Unknown error')}")
+                    else:
+                        recs = raw.get("recommendations", [])
+                        if not recs:
+                            st.warning("⚠️ Skill yang Anda masukkan tidak ditemukan dalam database kami, sehingga rekomendasi karir tidak dapat ditampilkan. Namun Anda tetap bisa memilih profesi impian di kolom kanan dan melihat skill gap serta roadmap belajarnya!")
+                            st.session_state.recommendations      = None
+                            st.session_state.show_recommendations = False
+                            st.session_state.career_dropdown      = "-- Pilih Profesi Impian Anda --"
+                            st.session_state.user_skills_text     = user_input
+        
+                        else:
+                            st.session_state.recommendations      = recs
+                            st.session_state.user_skills_text     = user_input
+                            st.session_state.show_recommendations = True
+                            st.session_state.show_evaluation      = False
+                            st.session_state.analysis             = None
+                            st.session_state.roadmap              = None
+                            st.session_state.career_dropdown      = "-- Pilih Profesi Impian Anda --"
 
     # ── HASIL REKOMENDASI ────────────────────────────────────────────────────
     if st.session_state.show_recommendations and st.session_state.recommendations:
-        symbols = ["&#9644;", "&#9643;", "&#9642;", "&#9641;"]
 
         st.markdown("""
         <div style="background:#ffffff; border:1px solid #e5e7eb; border-radius:12px; padding:20px; margin-top:12px;">
@@ -126,9 +149,8 @@ with col_left:
         for i, rec in enumerate(st.session_state.recommendations):
             score       = rec["match_score"] * 100 if rec["match_score"] <= 1 else rec["match_score"]
             score_color = "#16a34a" if score >= 66 else "#ca8a04" if score >= 32 else "#dc2626"
-            sym         = symbols[i % len(symbols)]
+            sym         = f"#{i+1}"
             title       = rec["title"]
-            level       = rec["experience_level"]
 
             st.markdown(
                 '<div style="background:#f8fafc; border:1px solid #e5e7eb; border-radius:10px; padding:12px 14px; margin-bottom:4px; display:flex; align-items:center; justify-content:space-between;">'
@@ -136,7 +158,6 @@ with col_left:
                 '<div style="width:36px; height:36px; border-radius:8px; background:#f1f5f9; border:1px solid #e2e8f0; display:flex; align-items:center; justify-content:center; font-size:15px; color:#475569; flex-shrink:0;">' + sym + '</div>'
                 '<div>'
                 '<div style="font-size:14px; font-weight:700; color:#111827;">' + title + '</div>'
-                '<div style="font-size:11px; color:#9ca3af; margin-top:1px;">' + level + '</div>'
                 '</div></div>'
                 '<div style="text-align:right;">'
                 '<div style="font-size:15px; font-weight:700; color:' + score_color + ';">' + f"{score:.1f}%" + '</div>'
@@ -174,19 +195,22 @@ with col_right:
     </div>
     """, unsafe_allow_html=True)
 
-    recs = st.session_state.recommendations or []
+    # Load semua profesi dari database
+    all_careers = get_all_careers()
+    career_options = ["-- Pilih Profesi Impian Anda --"] + all_careers
 
-    if recs:
-        title_options  = ["-- Pilih Profesi Impian Anda --"] + [f"{r['title']} (Rekomendasi #{i+1})" for i, r in enumerate(recs)]
-        selected_label = st.selectbox("Pilih Profesi", options=title_options, key="career_dropdown", label_visibility="collapsed")
-        selected       = recs[title_options.index(selected_label) - 1]["title"] if selected_label != "-- Pilih Profesi Impian Anda --" else None
-    else:
-        st.selectbox("Pilih Profesi", options=["-- Pilih Profesi Impian Anda --"], key="career_dropdown", label_visibility="collapsed")
-        selected = None
+    selected_label = st.selectbox(
+        "Pilih Profesi",
+        options=career_options,
+        key="career_dropdown",
+        label_visibility="collapsed"
+    )
+
+    selected = selected_label if selected_label != "-- Pilih Profesi Impian Anda --" else None
 
     # ── TOMBOL EVALUASI ──────────────────────────────────────────────────────
     if st.button("Evaluasi Kesiapan"):
-        if not recs:
+        if not st.session_state.get("user_skills_text", "").strip():
             st.warning("Jalankan analisis skill dulu di kolom kiri.")
         elif not selected:
             st.warning("Pilih profesi terlebih dahulu.")
@@ -222,6 +246,14 @@ with col_right:
         missing = [m["skill"] for m in analysis.get("missing_skills_priority", [])]
         n_owned = len(owned)
         n_miss  = len(missing)
+        
+        # Taruh sebelum score card
+        if score >= 66:
+            desc_text = "Skill Anda sangat mendekati kebutuhan pasar industri!"
+        elif score >= 32:
+            desc_text = "Skill Anda cukup relevan, namun masih ada beberapa gap yang perlu ditutup."
+        else:
+            desc_text = "Skill Anda masih jauh dari kebutuhan profesi ini. Fokus pada upskilling intensif."
 
         # Score card
         st.markdown(
@@ -234,7 +266,7 @@ with col_right:
             '<span style="font-size:9px; text-transform:uppercase; letter-spacing:0.05em; color:#9ca3af;">SKOR KERJA</span>'
             '</div>'
             '<div style="flex:1;">'
-            '<p style="margin:0 0 8px 0; font-size:13px; color:#6b7280;">Skill Anda sangat mendekati kebutuhan pasar industri!</p>'
+            '<p style="margin:0 0 8px 0; font-size:13px; color:#6b7280;">' + desc_text + '</p>'
             '<span style="font-size:12px; font-weight:600; background:' + badge_bg + '; color:' + badge_color + '; border:1px solid ' + badge_border + '; padding:4px 12px; border-radius:99px;">Kategori: ' + kategori + '</span>'
             '</div></div>'
             '<div style="display:flex; gap:12px;">'
@@ -258,20 +290,6 @@ with col_right:
             + miss_label + '<div>' + badges + '</div></div>',
             unsafe_allow_html=True
         )
-        
-        # Roadmap
-        if roadmap:
-            st.markdown("""
-            <div style="background:#ffffff; border:1px solid #e5e7eb; border-radius:12px; padding:20px 20px 8px 20px; margin-bottom:4px;">
-                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:4px;">
-                    <div style="display:flex; align-items:center; gap:8px;">
-                        <span style="font-size:16px;">◫</span>
-                        <span style="font-size:15px; font-weight:700; color:#111827;">Roadmap Belajar Terpersonalisasi (4 Minggu)</span>
-                    </div>
-                </div>
-                <p style="color:#6b7280; font-size:12px; margin:0 0 14px 0;">Dihasilkan oleh AI berbasis deteksi gap secara zero-shot</p>
-            </div>
-            """, unsafe_allow_html=True)
 
         # =========================
         # ROADMAP
@@ -298,7 +316,7 @@ with col_right:
                 </div>
                 """, unsafe_allow_html=True)
 
-                tab_labels = [f"Minggu {w['week']}" for w in weeks]
+                tab_labels = [f"Minggu {i+1}" for i, w in enumerate(weeks)]
                 tabs = st.tabs(tab_labels)
 
                 for idx, tab in enumerate(tabs):
@@ -308,16 +326,7 @@ with col_right:
                         week = weeks[idx]
 
                         st.markdown(
-                            f"""
-                            <p style="
-                            font-size:12px;
-                            font-weight:700;
-                            color:#6b7280;
-                            text-transform:uppercase;
-                            margin-bottom:12px;">
-                            {week.get("focus","")}
-                            </p>
-                            """,
+                            f"<p style='font-size:12px; font-weight:700; color:#6b7280; text-transform:uppercase; margin-bottom:12px;'>{week.get('focus', '')}</p>",
                             unsafe_allow_html=True
                         )
 
@@ -332,40 +341,18 @@ with col_right:
                                 if d + j < len(days):
 
                                     day = days[d + j]
+                                    hari = day.get('day', '')
+                                    topik = day.get('topic', '')
+                                    detail = day.get('detail', '')
+                                    resource = day.get('resource', '#')
 
                                     with col:
-
                                         st.markdown(
-                                            f"""
-                                            <div style="
-                                            background:#1e3a5f;
-                                            border-radius:10px;
-                                            padding:14px 16px;
-                                            margin-bottom:10px;
-                                            min-height:120px;">
-
-                                            <p style="
-                                            color:white;
-                                            font-weight:600;">
-                                            Hari {day.get('day')} — {day.get('topic')}
-                                            </p>
-
-                                            <p style="color:#cbd5e1;">
-{day.get('detail')}
-</p>
-
-<a href="{day.get('resource', '#')}"
-   target="_blank"
-   style="
-   color:white;
-   font-size:12px;
-   text-decoration:none;
-   font-weight:600;">
-   📚 Buka Sumber Belajar
-</a>
-
-                                            </div>
-                                            """,
+                                            f"<div style='background:#1e3a5f; border-radius:10px; padding:14px 16px; margin-bottom:10px; min-height:120px;'>"
+                                            f"<p style='color:white; font-weight:600;'>Hari {hari} — {topik}</p>"
+                                            f"<p style='color:#cbd5e1; font-size:13px;'>{detail}</p>"
+                                            f"<a href='{resource}' target='_blank' style='color:white; font-size:12px; text-decoration:none; font-weight:600;'>📚 Buka Sumber Belajar</a>"
+                                            f"</div>",
                                             unsafe_allow_html=True
                                         )
 
