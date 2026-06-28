@@ -4,9 +4,10 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import re
 from collections import Counter
+import os
+_BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-
-data = pd.read_csv("data/processed/career_profiles.csv")
+data = pd.read_csv(os.path.join(_BASE_DIR, "data/processed/career_profiles.csv"))
 data
 
 def clean_title(title):

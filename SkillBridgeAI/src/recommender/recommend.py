@@ -24,14 +24,15 @@ from sentence_transformers import SentenceTransformer
 import json
 from src.skill_extraction.skill_gap import normalize_skill_name
 
-# Load career profiles and precomputed embeddings
-_raw_careers = pd.read_csv("data/processed/career_profiles.csv")
-_raw_embeddings = np.loadtxt("data/embeddings/career_embeddings.csv", delimiter=",")
+_BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+_raw_careers = pd.read_csv(os.path.join(_BASE_DIR, "data/processed/career_profiles.csv"))
+_raw_embeddings = np.loadtxt(os.path.join(_BASE_DIR, "data/embeddings/career_embeddings.csv"), delimiter=",")
 
 # Filter out careers with 0 skills in career_skills.json and populate career_to_skills mapping
 career_to_skills = {}
 try:
-    with open("data/processed/career_skills.json", "r", encoding="utf-8") as f:
+    with open(os.path.join(_BASE_DIR, "data/processed/career_skills.json"), "r", encoding="utf-8") as f:
         _skills_data = json.load(f)
     _valid_careers = {item["career"] for item in _skills_data if len(item.get("skills", [])) > 0}
     _valid_indices = [i for i, r in _raw_careers.iterrows() if r["career"] in _valid_careers]

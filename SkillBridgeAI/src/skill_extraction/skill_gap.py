@@ -1,6 +1,8 @@
 import json
 from difflib import get_close_matches
 from src.skill_extraction.skills import SKILLS
+import os
+_BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 _skills_lower = [s.lower() for s in SKILLS]
 
@@ -75,7 +77,7 @@ def analyze_skill_gap(
         }
     """
     with open(
-        "data/processed/career_skills.json",
+        os.path.join(_BASE_DIR, "data/processed/career_skills.json"),
         "r",
         encoding="utf-8"
     ) as f:
